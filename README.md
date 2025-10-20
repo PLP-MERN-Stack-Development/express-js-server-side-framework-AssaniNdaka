@@ -1,62 +1,151 @@
-# Express.js RESTful API Assignment
+# Express.js RESTful API - Product Management
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+## Overview
+This project is a RESTful API built using Express.js and MongoDB for managing products. It supports CRUD operations (Create, Read, Update, Delete), filtering, pagination, and search, and includes custom middleware for logging and error handling.
 
-## Assignment Overview
+## Features
+- GET /api/products – Retrieve all products with optional filtering, search, and pagination
+- GET /api/products/:id – Retrieve a product by ID
+- POST /api/products – Create a new product
+- PUT /api/products/:id – Update a product
+- DELETE /api/products/:id – Delete a product
+Advanced features include search by name or description (`q` query), filter by category (`category`) and price range (`minPrice` / `maxPrice`), and pagination using `page` and `limit`.
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+## Project Structure
+- `config/db.js` – MongoDB connection
+- `models/Product.js` – Product schema
+- `routes/productRoutes.js` – Routes for products
+- `middleware/logger.js` – Logs requests
+- `middleware/errorHandler.js` – Handles errors
+- `server.js` – Entry point
+- `package.json` & `package-lock.json` – Node dependencies
+- `.env` – Environment variables (not committed)
+- `.env.example` – Example environment variables
 
-## Getting Started
+## Installation
+1. Clone the repository:  
+bash
+git clone <your-github-repo-url>
+cd express-js-server-side-framework-AssaniNdaka-1
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
-   ```
-   npm install
-   ```
-4. Run the server:
-   ```
-   npm start
-   ```
 
-## Files Included
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+2. **Install dependencies**:
 
-## Requirements
+npm install
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+3. **Create a .env file (based on .env.example) and add**
 
-## API Endpoints
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/productsdb
+NODE_ENV=development
 
-The API will have the following endpoints:
+4. **Start the server**:
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+npm start
 
-## Submission
+**The API will run at: http://localhost:5000**
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+API Endpoints
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+1. **Get All Products**
 
-## Resources
+GET /api/products
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+2. **Get Product by ID**
+
+GET /api/products/:id
+
+Example response:
+
+{
+  "_id": "650f123abc123def4567890a",
+  "name": "Laptop",
+  "description": "High performance laptop",
+  "price": 1200,
+  "category": "Electronics",
+  "createdAt": "2025-10-20T12:00:00.000Z"
+}
+**Create a Product**
+POST /api/products
+
+//Request body:
+
+{
+  "name": "Smartphone",
+  "description": "Latest model smartphone",
+  "price": 800,
+  "category": "Electronics"
+}
+
+//Response:
+
+{
+  "_id": "650f456abc123def4567890b",
+  "name": "Smartphone",
+  "description": "Latest model smartphone",
+  "price": 800,
+  "category": "Electronics",
+  "createdAt": "2025-10-20T12:30:00.000Z"
+}
+
+**Update a Product**
+
+PUT /api/products/:id
+
+//Request body:
+
+{
+  "price": 750
+}
+
+//Response:
+
+{
+  "_id": "650f456abc123def4567890b",
+  "name": "Smartphone",
+  "description": "Latest model smartphone",
+  "price": 750,
+  "category": "Electronics",
+  "createdAt": "2025-10-20T12:30:00.000Z"
+}
+
+**Delete a Product**
+
+DELETE /api/products/:id
+
+//Response:
+{
+  "message": "Deleted successfully"
+}
+
+**Middleware**
+
+Logger – logs HTTP requests to the console
+
+Error Handler – returns proper HTTP status codes and messages
+
+**Environment Variables**
+//.env.example includes:
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/productsdb
+NODE_ENV=development
+
+**Testing the API**
+
+Use Postman, Insomnia, or curl to test all endpoints.
+
+**Author**
+
+Assani Ndaka
+
+**License**
+
+This project is for academic purposes and submitted as part of a GitHub Classroom assignment.
+
+
+
+
+
+
+
